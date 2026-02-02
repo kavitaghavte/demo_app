@@ -1,0 +1,31 @@
+<div class="login-page dis-center">
+  <div class="login-card">
+    <h2 class="login-title">Login</h2>
+    <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
+      <div class="flex-column mb-20">
+        <label class="labelBL15 pb-10">Email</label>
+        <input type="email" name="email" id="email" [(ngModel)]="email" #emailRef="ngModel" required email>
+        <div *ngIf="emailRef.invalid && emailRef.touched">
+          <small *ngIf="emailRef.errors?.['required']" class="errMsg">Email is Required</small>
+          <small *ngIf="emailRef.errors?.['email']" class="errMsg">Enter valid Email</small>
+        </div>
+      </div>
+      <div class="flex-column mb-20">
+        <label class="labelBL15 pb-10">Password</label>
+        <div class="position-wrapper">
+          <input [type]="showPassword? 'text' : 'password'" name="password" id="password" 
+          [(ngModel)]="password" #passwordRef="ngModel" required 
+          pattern="^(?=.*[a-z])(?=.*[A-Z])(?=.*\d)(?=.*[@$!%*?&])[A-Za-z\d@$!%*?&]{8,}$">
+          <img [src]="showPassword? 'icons/eye-show.png' : 'icons/eye-hide.png'" class="toggle-icon" (click)="togglePassword()">
+        </div>
+        <div *ngIf="passwordRef.invalid && passwordRef.touched">
+          <small *ngIf="passwordRef.errors?.['required']" class="errMsg">Password is Required</small>
+          <small *ngIf="passwordRef.errors?.['pattern']" class="errMsg">Enter valid Password</small>
+        </div>
+      </div>
+      <div class="horizontal-center">
+        <button type="submit" class="login-btn" [disabled]="loginForm.invalid">Login</button>
+      </div>
+    </form>
+  </div>
+</div>

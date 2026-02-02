@@ -1,1 +1,75 @@
-/* You can add global styles to this file, and also import other style files */
+@use 'theme/layout';
+@use 'theme/material';
+// Custom Theming for Angular Material
+// For more information: https://material.angular.dev/guide/theming
+@use '@angular/material' as mat;
+@include mat.core();
+$my-theme: mat.define-theme((
+  color: (
+    theme-type: light,
+    primary: mat.$azure-palette,
+    tertiary: mat.$blue-palette,
+  ),
+  typography: (
+    plain-family: Roboto
+  ),
+  density: (
+    scale: 0
+  )
+));
+// Apply theme globally
+:root {
+  @include mat.all-component-themes($my-theme);
+}
+
+html, body { 
+  height: 100%; 
+  padding: 0;
+  margin: 0;
+}
+body { margin: 0; font-family: Roboto, "Helvetica Neue", sans-serif; }
+h1,h2,h3,h4,h5,h6,p {
+  margin: 0;
+}
+@font-face {
+  font-family: 'OpenSans-Bold';
+  src: url('./assets/fonts/OpenSans-Bold.ttf');
+}
+@font-face {
+  font-family: 'OpenSans-SemiBold';
+  src: url('./assets/fonts/OpenSans-SemiBold.ttf');
+}
+@font-face {
+  font-family: 'OpenSans-Italic';
+  src: url('./assets/fonts/OpenSans-Italic.ttf');
+}
+@font-face {
+  font-family: 'OpenSans-Light';
+  src: url('./assets/fonts/OpenSans-Light.ttf');
+}
+@font-face {
+  font-family: 'OpenSans-Medium';
+  src: url('./assets/fonts/OpenSans-Medium.ttf');
+}
+@font-face {
+  font-family: 'OpenSans-Regular';
+  src: url('./assets/fonts/OpenSans-Regular.ttf');
+}
+.labelBL15{
+  color: #000000;
+  font-size: 15px;
+  font-family: 'OpenSans-SemiBold';
+}
+.labelBL20{
+  color: #000000;
+  font-size: 20px;
+  font-family: 'OpenSans-SemiBold';
+}
+.label16{
+  color: #000000;
+  font-size: 16px;
+  font-family: 'OpenSans-Regular';
+}
+.cp{
+  cursor: pointer;
+}

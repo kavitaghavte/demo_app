@@ -1,0 +1,32 @@
+.dashboard-layout{
+  background-color: #FFFFFF;
+  padding: 10px;
+}
+.dashbord-header{
+  display: flex;
+  justify-content: space-between;
+}
+.dashboard-box-container{
+  display: flex;
+  margin-top: 20px;
+}
+.dashboard-box-layout{
+  width: 15%;
+  margin-right: 10px;
+}
+.dashboard-box-style{
+  padding: 10px;
+  border: 1px solid #CECECE;
+  border-radius: 8px;
+}
+.box-label{
+  font-family: 'OpenSans-Bold';
+  font-size: 16px;
+  color: #000000;
+}
+.box-count{
+  font-family: 'OpenSans-Bold';
+  font-size: 16px;
+  color: #E9511C;
+  margin-top: 10px;
+}

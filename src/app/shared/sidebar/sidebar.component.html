@@ -1,0 +1,8 @@
+<div class="sidebar-nav">
+  <div class="listView" *ngFor="let item of sidebarList" [class.active]="selectedItem == item">
+    <a class="vertical-center" (click)="selectView(item)">
+      <img class="list-img" [src] = "item.img">
+      <span class="list-text">{{item.ModuleName}}</span>
+    </a>
+  </div>
+</div>

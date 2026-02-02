@@ -1,0 +1,25 @@
+<div class="dashboard-layout">
+  <div class="dashbord-header">
+    <h2 class="labelBL15">Dashboard</h2>
+    <div>
+      <mat-form-field class="mat-input-style mat-height40 mr-10">
+        <mat-select [(ngModel)]="selectedMonth" placeholder="select Month" (selectionChange)="onMonthChange()">
+          <mat-option *ngFor="let item of monthList" [value]="item.id">{{item.name}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+      <mat-form-field class="mat-input-style mat-height40">
+        <mat-select [(ngModel)]="selectedYear" placeholder="select Year" (selectionChange)="onYearChange()">
+          <mat-option *ngFor="let item of yearList" [value]="item">{{item}}</mat-option>
+        </mat-select>
+      </mat-form-field>
+    </div>
+  </div>
+  <div class="dashboard-box-container">
+    <div class="dashboard-box-layout" *ngFor="let item of dashboardModule">
+      <div class="dashboard-box-style">
+        <label class="box-label">{{item.name}}</label>
+        <div class="box-count">{{item.count}}</div>
+      </div>
+    </div>
+  </div>
+</div>

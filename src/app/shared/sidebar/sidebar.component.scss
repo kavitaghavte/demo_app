@@ -1,0 +1,28 @@
+.listView{
+  width: 100%;
+}
+.listView a{
+  color: #fff;
+  cursor: pointer;
+  padding: 15px 5px;
+}
+.listView:hover{
+  background-color: #EBEBEB;
+  color: #FFFFFF;
+}
+.listView.active {
+  background-color: #F3820E;
+}
+.listView.active .list-text {
+  color: white;
+}
+.list-img{
+  height: 25px;
+  width: 25px;
+  margin: 0 15px;
+}
+.list-text{
+  font-family: 'OpenSans-Regular';
+  font-size: 16px;
+  color: #000000;
+}
