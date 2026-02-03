@@ -16,7 +16,7 @@ export const HOME_ROUTES: Routes = [
       },
       {
         path: 'product',
-        loadChildren: () => import('../../feachers/product/product.routes').then(r => r.PRODUCT_ROUTES)
+        loadChildren: () => import('../../feachers/products/products.routes').then(r => r.PRODUCT_ROUTES)
       },
       {
         path: 'orders',
