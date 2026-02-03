@@ -25,12 +25,12 @@ export class SidebarComponent {
     {
       ModuleName: 'PRODUCT',
       img: 'icons/product.png',
-      roterPath: 'home/user'
+      roterPath: 'home/product'
     },
     {
       ModuleName: 'ORDER',
       img: 'icons/order.png',
-      roterPath: 'home/user'
+      roterPath: 'home/orders'
     }
   ];
   selectView(item:any){
