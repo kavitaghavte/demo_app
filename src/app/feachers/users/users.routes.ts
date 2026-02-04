@@ -7,10 +7,10 @@ export const USERS_ROUTES: Routes = [
   },
   {
     path: 'add',
-    loadComponent: () => import('./pages/add-update-user/add-update-user.component').then(c => c.AddUpdateUserComponent)
+    loadComponent: () => import('./pages/user-form/user-form.component').then(c => c.UserFormComponent)
   },
   {
     path: 'edit/:id',
-    loadComponent: () => import('./pages/add-update-user/add-update-user.component').then(c => c.AddUpdateUserComponent)
+    loadComponent: () => import('./pages/user-form/user-form.component').then(c => c.UserFormComponent)
   }
 ]

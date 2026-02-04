@@ -20,7 +20,7 @@ export class SidebarComponent {
     {
       ModuleName: 'USER',
       img: 'icons/group.png',
-      roterPath: 'home/user'
+      roterPath: 'home/users'
     },
     {
       ModuleName: 'PRODUCT',

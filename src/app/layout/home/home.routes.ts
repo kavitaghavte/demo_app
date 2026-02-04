@@ -11,11 +11,11 @@ export const HOME_ROUTES: Routes = [
         loadChildren: () => import('../../feachers/dashboard/dashboard.routes').then(r => r.DASHBOARD_ROUTES)
       },
       {
-        path: 'user',
+        path: 'users',
         loadChildren: () => import('../../feachers/users/users.routes').then(r => r.USERS_ROUTES)
       },
       {
-        path: 'product',
+        path: 'products',
         loadChildren: () => import('../../feachers/products/products.routes').then(r => r.PRODUCT_ROUTES)
       },
       {
