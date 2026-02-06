@@ -3,7 +3,7 @@
     <h2 class="login-title">Login</h2>
     <form #loginForm="ngForm" (ngSubmit)="onLogin(loginForm)">
       <div class="flex-column mb-20">
-        <label class="labelBL15 pb-10">Email</label>
+        <label class="label-bold-15 pb-10">Email</label>
         <input type="email" name="email" id="email" [(ngModel)]="email" #emailRef="ngModel" required email>
         <div *ngIf="emailRef.invalid && emailRef.touched">
           <small *ngIf="emailRef.errors?.['required']" class="errMsg">Email is Required</small>
@@ -11,7 +11,7 @@
         </div>
       </div>
       <div class="flex-column mb-20">
-        <label class="labelBL15 pb-10">Password</label>
+        <label class="label-bold-15 pb-10">Password</label>
         <div class="position-wrapper">
           <input [type]="showPassword? 'text' : 'password'" name="password" id="password" 
           [(ngModel)]="password" #passwordRef="ngModel" required 

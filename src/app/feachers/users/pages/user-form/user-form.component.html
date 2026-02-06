@@ -1,11 +1,124 @@
 <div>
-  <div class="user-header mb-15">
-    <img class="cp mr-10" src="icons/backarrow.svg" [routerLink]="['/home/users']">
-    <h2 class="labelBL15">Add User</h2>
+  <div class="vertical-center mb-15">
+    <img class="cp mr-15" src="icons/backarrow.svg" [routerLink]="['/home/users']">
+    <h2 class="label-bold-15">Add User</h2>
   </div>
-  <div>
-    <form>
-
+  <div class="horizontal-center">
+    <form [formGroup]="userForm" class="w75" (ngSubmit)="onSubmit()">
+      <mat-card class="form-card" formGroupName="personalDetails">
+        <mat-card-title class="user-group-label">Personal Details: </mat-card-title>
+        <div class="grid-container">
+          <div class="flex-column">
+            <label class="user-control-label">First Name<span class="red-cl">*</span></label>
+            <mat-form-field class="mat-input-style mat-height40">
+              <input type="text" matInput formControlName="firstName">
+            </mat-form-field>
+          </div>
+          <div class="flex-column">
+            <label class="user-control-label">Last Name<span class="red-cl">*</span></label>
+            <mat-form-field class="mat-input-style mat-height40">
+              <input type="text" matInput formControlName="lastName">
+            </mat-form-field>
+          </div>
+          <div class="flex-column">
+            <label class="user-control-label">bloodGroup</label>
+            <mat-form-field class="mat-input-style mat-height40">
+              <mat-select  placeholder="select Year" formControlName="bloodGroup">
+                <mat-option *ngFor="let item of bloodGroupList" [value]="item">{{item}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+          <div class="flex-column">
+            <label class="user-control-label">Date of Birth<span class="red-cl">*</span></label>
+            <mat-form-field class="mat-input-style mat-height40">
+              <input matInput [matDatepicker]="picker" formControlName="dob">
+              <mat-datepicker-toggle matIconSuffix [for]="picker"></mat-datepicker-toggle>
+              <mat-datepicker #picker></mat-datepicker>
+            </mat-form-field>
+          </div>
+          <div class="flex-column">
+            <label class="user-control-label">Gender<span class="red-cl">*</span></label>
+            <mat-radio-group class="w70" formControlName="gender">
+              <mat-radio-button [value]="'Male'">Male</mat-radio-button>
+              <mat-radio-button [value]="'Female'">Female</mat-radio-button>
+            </mat-radio-group>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="form-card" formGroupName="contactInfo">
+        <mat-card-title class="user-group-label">Contact Info:</mat-card-title>
+        <div class="grid-container">
+          <div class="flex-column">
+            <label class="user-control-label">Mobile<span class="red-cl">*</span></label>
+            <mat-form-field class="mat-input-style mat-height40">
+              <input type="number" matInput formControlName="mobile">
+            </mat-form-field>
+          </div>
+          <div class="flex-column">
+            <label class="user-control-label">Email<span class="red-cl">*</span></label>
+            <mat-form-field class="mat-input-style mat-height40">
+              <input type="email" matInput formControlName="email">
+            </mat-form-field>
+          </div>
+          <div formArrayName="address" class="full-span">
+            <div *ngFor="let item of addressArray.controls; let i=index" [formGroupName]="i" class="address-card">
+              <div class="address-header">
+                <label class="user-control-label">Address {{i+1}}</label>
+                <div *ngIf="addressArray.length > 1"  class="addBtn" (click)="removeAddress(i)"> -Remove Address</div>
+              </div>
+              <div class="grid-container">
+                <div class="flex-column">
+                  <label class="user-control-label">Country<span class="red-cl">*</span></label>
+                  <mat-form-field class="mat-input-style mat-height40">
+                    <input type="text" matInput formControlName="country">
+                  </mat-form-field>
+                </div>
+                <div class="flex-column">
+                  <label class="user-control-label">state<span class="red-cl">*</span></label>
+                  <mat-form-field class="mat-input-style mat-height40">
+                    <input type="text" matInput formControlName="state">
+                  </mat-form-field>
+                </div>
+                <div class="flex-column">
+                  <label class="user-control-label">City<span class="red-cl">*</span></label>
+                  <mat-form-field class="mat-input-style mat-height40">
+                    <input type="text" matInput formControlName="city">
+                  </mat-form-field>
+                </div>
+                <div class="flex-column">
+                  <label class="user-control-label">Street<span class="red-cl">*</span></label>
+                  <mat-form-field class="mat-input-style mat-height40">
+                    <input type="text" matInput formControlName="street">
+                  </mat-form-field>
+                </div>
+                <div class="flex-column">
+                  <label class="user-control-label">Pincode<span class="red-cl">*</span></label>
+                  <mat-form-field class="mat-input-style mat-height40">
+                    <input type="text" matInput formControlName="pincode">
+                  </mat-form-field>
+                </div>
+              </div>
+            </div>
+            <div class="addBtn float-r" (click)="addAddress()">+Add Address</div>
+          </div>
+        </div>
+      </mat-card>
+      <mat-card class="form-card" formGroupName="preference">
+        <mat-card-title class="user-group-label">Preference: </mat-card-title>
+        <div class="grid-container">
+          <div class="flex-column">
+            <label class="user-control-label">Intrest</label>
+            <mat-form-field class="mat-input-style mat-height40">
+              <mat-select formControlName="intrest" multiple>
+                <mat-option *ngFor="let item of intrestList" [value]="item">{{item}}</mat-option>
+              </mat-select>
+            </mat-form-field>
+          </div>
+        </div>
+      </mat-card>
+      <div class="horizontal-center">
+        <button type="submit" class="add-btn" matButton="filled" [disabled]="userForm.invalid">Add</button>
+      </div>
     </form>
   </div>
 </div>

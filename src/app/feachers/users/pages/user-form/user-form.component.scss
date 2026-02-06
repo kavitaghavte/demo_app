@@ -1,10 +1,79 @@
 .user-layout{
-  padding: 20px;
+  padding: 24px;
+  background-color: #f5f7fa;
 }
-.user-header{
+.form-card {
+  margin-bottom: 30px;
+  border-radius: 10px;
+  box-shadow: 0 2px 12px rgba(0,0,0,0.06);
+  padding: 15px;
+}
+/* MASTER GRID */
+.grid-container {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  row-gap: 20px;
+  column-gap: 100px;
+  margin-top: 15px;
+}
+/* Full width span */
+.full-span {
+  grid-column: 1 / -1;
+}
+.user-group-label{
+  color: #000000;
+  font-size: 20px;
+  font-family: 'OpenSans-Regular';
+  margin-bottom: 15px;
+}
+.user-control-label{
+  color: #000000;
+  font-size: 14px;
+  font-family: 'OpenSans-Regular';
+  padding-bottom: 10px;
+}
+.address-card {
+  border: 1px solid #e0e0e0;
+  padding: 15px;
+  border-radius: 8px;
+  margin-bottom: 20px;
+  background: #fafafa;
+}
+.address-header{
   display: flex;
-  align-items: center;
+  justify-content: space-between;
+  margin-bottom: 15px;
 }
-.close-icon{
+.addBtn{
+  border: none;
+  color: #f44336;
   cursor: pointer;
+}
+.red-cl{
+  color: #f44336;
+}
+.float-r{
+  float: right;
+}
+.add-btn{
+  padding: 12px;
+  font-size: 20px;
+  font-family: 'OpenSans-SemiBold';
+  border-radius: 4px;
+  background-color: #E9511C;
+  color: #FFFFFF;
+  border: none;
+  cursor: pointer;
+  width: 20%;
+}
+.add-btn:disabled {
+  background-color: #b0b0b0;
+  color: #000000;
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+@media (max-width: 800px) {
+  .grid-container {
+    grid-template-columns: 1fr;
+  }
 }
