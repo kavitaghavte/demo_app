@@ -1,5 +1,5 @@
 import { Component, inject, OnInit } from '@angular/core';
-import { RouterLink } from "@angular/router";
+import { Router, RouterLink } from "@angular/router";
 import { CommonModule } from '@angular/common';
 import { FormBuilder, FormGroup, Validators,ReactiveFormsModule, FormArray } from '@angular/forms';
 import { MatFormFieldModule } from '@angular/material/form-field';
@@ -7,8 +7,9 @@ import { MatInputModule } from '@angular/material/input';
 import { MatRadioModule } from '@angular/material/radio';
 import { MatSelectModule } from '@angular/material/select';
 import { MatCardModule } from '@angular/material/card';
-import {MatDatepickerModule} from '@angular/material/datepicker';
+import { MatDatepickerModule} from '@angular/material/datepicker';
 import { MatNativeDateModule } from '@angular/material/core';
+import { UserService } from '../../services/user.service';
 
 @Component({
   selector: 'app-user-form',
@@ -29,6 +30,8 @@ import { MatNativeDateModule } from '@angular/material/core';
 })
 export class UserFormComponent implements OnInit{
   private fb = inject(FormBuilder);
+  private userService = inject(UserService);
+  private router = inject(Router)
   userForm!: FormGroup;
   bloodGroupList: any[] = ['O+','O-',"A+","A-","B+","B-","AB+","AB-"];
   intrestList = ['Home decor','Reading','Personal care','Gaming','Cooking']
@@ -45,11 +48,9 @@ export class UserFormComponent implements OnInit{
         gender: ['', Validators.required],
       }),
       contactInfo: this.fb.group({
-        mobile: ['', Validators.required,Validators.pattern('^[6-9][0-9]{9}$')],
-        email: ['', Validators.required,Validators.email],
-        address: this.fb.array([
-          this.createAddress()
-        ])
+        mobile: ['', [Validators.required,Validators.pattern('^[6-9][0-9]{9}$')]],
+        email: ['', [Validators.required,Validators.email]],
+        address: this.fb.array([this.createAddress()])
       }),
       preference: this.fb.group({
         intrest: [[]]
@@ -58,11 +59,11 @@ export class UserFormComponent implements OnInit{
   }
   createAddress(): FormGroup{
     return(this.fb.group({
-      country: ['',Validators.required],
-      state: ['',Validators.required],
-      city: ['',Validators.required],
-      street: ['',Validators.required],
-      pincode: ['',Validators.required,Validators.pattern('^[1-9][0-9]{5}$')],
+      country: ['',[Validators.required]],
+      state: ['',[Validators.required]],
+      city: ['',[Validators.required]],
+      street: ['',[Validators.required]],
+      pincode: ['',[Validators.required,Validators.pattern('^[1-9][0-9]{5}$')]],
     }));
   }
   get addressArray():FormArray{
@@ -77,6 +78,27 @@ export class UserFormComponent implements OnInit{
     }
   }
   onSubmit(){
+    if(this.userForm.valid){
+      // const dob = this.userForm.get('personalDetails.dob')?.value;
+      // const request = {
+      //   "personalDetails": {
+      //     firstName: this.userForm.get('personalDetails.firstName')?.value,
+      //     lastName: this.userForm.get('personalDetails.lastName')?.value,
+      //     bloodGroup: this.userForm.get('personalDetails.bloodGroup')?.value,
+      //     dob: new Date(dob).toISOString(),
+      //     gender: this.userForm.get('personalDetails.gender')?.value,
+      //   },
+      //   "contactInfo": this.userForm.get('contactInfo')?.value,
+      //   "preference": this.userForm.get('preference')?.value
+      // }
+      const payload = this.userForm.getRawValue();
 
+      payload.personalDetails.dob = new Date(payload.personalDetails.dob).toISOString();
+      console.log(payload);
+      this.userService.addUserService(payload).subscribe((res) => {
+        //console.log(res);
+        this.router.navigateByUrl('/home/users');
+      });
+    }
   }
 }
